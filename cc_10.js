@@ -88,7 +88,19 @@ inventory.listOrders = function() {
     });
 }
 
-// Test Cases
 console.log(inventory.placeOrder(601, prod1, 2)); //adds the order to the inventory
 inventory.listOrders(); //logs the orders
+console.log(prod1.getDetails()); //prints the updated stock of the product
+
+//Task 5
+inventory.restockProduct = function(id, quantity) {
+    const product = this.products.find(product => product.id === id); //finds the product by ID inputed
+    if (product) { //checks if the product exists
+        product.stock += quantity; //restocks the product by the quanity inputed
+        return console.log(`Restocked Product: ${product.name}`,`Restocked Quantity: ${product.stock}`); //returns the restocked quantity
+    } else {
+        console.error('Product not found'); //prints the error message to the console
+    }
+}
+inventory.restockProduct(101, 5); //restocks the product
 console.log(prod1.getDetails()); //prints the updated stock of the product
