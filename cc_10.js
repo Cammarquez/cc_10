@@ -68,3 +68,27 @@ const inventory = new Inventory(); //creates a new object of the class Inventory
 console.log(inventory.addProduct(prod1)); //adds the product to the inventory
 console.log(inventory.addProduct(prod2)); //adds the product to the inventory
 inventory.listProducts(); //logs the inventory
+
+//Task 4
+inventory.orders = []; //creates an array to store the orders
+
+inventory.placeOrder = function(orderId, product, quantity) {
+    if (product.stock >= quantity) {
+        const order = new Order(orderId, product, quantity); //creates a new order
+        this.orders.push(order); //adds the order to the array
+        return `Order added to the inventory: ${order.orderId}`; //returns the order ID of the order added to the inventory
+    } else {
+        throw new Error('Insufficient stock to place the order');
+    }
+}
+
+inventory.listOrders = function() {
+    this.orders.forEach(order => {
+        console.log(order.getOrderDetails()); //logs the details of each order
+    });
+}
+
+// Test Cases
+console.log(inventory.placeOrder(601, prod1, 2)); //adds the order to the inventory
+inventory.listOrders(); //logs the orders
+console.log(prod1.getDetails()); //prints the updated stock of the product
