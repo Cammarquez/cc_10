@@ -20,6 +20,7 @@ class Product {
     }
 }
 const prod1 = new Product('Laptop',101,1200,10); //creates a new object of the class Product
+const prod2 = new Product('Phone',102,800,20); //creates a new object of the class Product
 console.log(prod1.getDetails()); //prints the details of the product
 console.log(prod1.updateStock(5)); //updates the stock of the product and prints the updated stock
 
@@ -44,3 +45,26 @@ class Order {
 const order1 = new Order(501, prod1, 2); //creates a new object of the class Order
 console.log(order1.getOrderDetails()); //prints the details of the order
 console.log(prod1.getDetails()); //prints the updated stock of the product
+
+//Task 3
+class Inventory {
+    constructor() //creates a class
+    {
+        this.products = []; //creates an array to store the products
+    }
+    addProduct(product) //creates a method to add a product to the inventory
+    {
+        this.products.push(product); //adds the product to the array
+        return `Product added to the inventory: ${product.name}`; //returns the name of the product added to the inventory
+    }
+    listProducts() //creates a method to get the inventory
+    {
+        this.products.forEach(product => {
+            console.log(product.getDetails()); //logs the details of each product
+        });
+    }
+}
+const inventory = new Inventory(); //creates a new object of the class Inventory
+console.log(inventory.addProduct(prod1)); //adds the product to the inventory
+console.log(inventory.addProduct(prod2)); //adds the product to the inventory
+inventory.listProducts(); //logs the inventory
